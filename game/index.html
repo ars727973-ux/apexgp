@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b0d10">
 <title>APEX GP</title>
 <!-- Настройки: адрес онлайн-сервера. Если у сервиса на Render другой адрес — поменяй здесь (wss://ИМЯ.onrender.com) -->
-<script>window.APEX_CONFIG = { server: 'wss://apexgp-server.onrender.com' };</script>
+<script>window.APEX_CONFIG = { server: 'wss://apexgp-server-ni14.onrender.com' };</script>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Saira:wght@400;500;600&display=swap">
 <style>
@@ -605,7 +605,7 @@ window.addEventListener('pagehide', () => Store.flush());
 document.addEventListener('visibilitychange', () => { if (document.hidden) Store.flush(); });
 
 // адрес онлайн-сервера: задаётся в index.html (window.APEX_CONFIG) или в настройках игры
-const DEFAULT_SERVER = (window.APEX_CONFIG && window.APEX_CONFIG.server) || 'wss://apexgp-server.onrender.com';
+const DEFAULT_SERVER = (window.APEX_CONFIG && window.APEX_CONFIG.server) || 'wss://apexgp-server-ni14.onrender.com';
 
 const Settings = Object.assign({
   crash: true, cam: 'chase', quality: 'mid', sound: true, steer: 'buttons',
@@ -4599,7 +4599,7 @@ const Net = {
   tryOpen() {
     if (this.cancelled) return;
     this.attempt++;
-    const url = this.url(), MAX = 6;
+    const url = this.url(), MAX = 8;
     this.setStatus('connecting', this.attempt === 1 ? 'Подключение к серверу…' : `Сервер просыпается… попытка ${this.attempt} из ${MAX}`);
     let ws; try { ws = this.ws = new WebSocket(url); } catch (e) { this.fail('Неверный адрес сервера: ' + url); return; }
     let opened = false;
